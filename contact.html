@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Caleb</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+
+      :root {
+        --bg: #0f111a;
+        --text: #00ff9c;
+        --secondary: #08fdd8;
+        --border: #1a1c25;
+        --error: #ff5c5c;
+      }
+
+      body {
+        background-color: var(--bg);
+        font-family: "Fira Code", monospace;
+        color: var(--text);
+        margin: 0;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      /* 🔗 Navigation */
+      .site-nav {
+        background-color: #13151f;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2rem;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 255, 156, 0.15);
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .site-nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+        flex-wrap: wrap;
+      }
+
+      .site-nav a {
+        color: var(--secondary);
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      .site-nav a:hover {
+        color: #fff;
+      }
+
+      .site-nav a.active {
+        color: var(--text);
+        border-bottom: 2px solid var(--text);
+      }
+
+      main {
+        width: 100%;
+        max-width: 600px;
+        background: #13151f;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 255, 156, 0.2);
+      }
+
+      h1 {
+        color: var(--secondary);
+        text-align: center;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      label {
+        font-weight: bold;
+        color: var(--secondary);
+      }
+
+      input,
+      textarea {
+        background-color: #1d1f2b;
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 0.7rem;
+        font-family: "Fira Code", monospace;
+        width: 100%;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .error {
+        color: var(--error);
+        font-size: 0.85rem;
+      }
+
+      button {
+        background-color: var(--secondary);
+        color: #000;
+        border: none;
+        padding: 0.8rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        font-family: "Fira Code", monospace;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #00ff9c;
+      }
+
+      .success {
+        color: var(--text);
+        text-align: center;
+        margin-top: 1rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1>Contact Me</h1>
+      <form id="contact-form" novalidate>
+        <div>
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            data-testid="test-contact-name"
+            aria-describedby="error-name"
+            required
+          />
+          <div
+            id="error-name"
+            class="error"
+            data-testid="test-contact-error-name"
+          ></div>
+        </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            data-testid="test-contact-email"
+            aria-describedby="error-email"
+            required
+          />
+          <div
+            id="error-email"
+            class="error"
+            data-testid="test-contact-error-email"
+          ></div>
+        </div>
+
+        <div>
+          <label for="subject">Subject</label>
+          <input
+            type="text"
+            id="subject"
+            data-testid="test-contact-subject"
+            aria-describedby="error-subject"
+            required
+          />
+          <div
+            id="error-subject"
+            class="error"
+            data-testid="test-contact-error-subject"
+          ></div>
+        </div>
+
+        <div>
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            data-testid="test-contact-message"
+            aria-describedby="error-message"
+            required
+          ></textarea>
+          <div
+            id="error-message"
+            class="error"
+            data-testid="test-contact-error-message"
+          ></div>
+        </div>
+
+        <button type="submit" data-testid="test-contact-submit">
+          Send Message
+        </button>
+      </form>
+      <div
+        id="success"
+        class="success"
+        data-testid="test-contact-success"
+        hidden
+      >
+        ✅ Thank you! Your message has been sent successfully.
+      </div>
+    </main>
+
+    <script>
+      const form = document.getElementById("contact-form");
+      const success = document.getElementById("success");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        success.hidden = true;
+
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const subject = document.getElementById("subject");
+        const message = document.getElementById("message");
+
+        const errors = {
+          name: document.getElementById("error-name"),
+          email: document.getElementById("error-email"),
+          subject: document.getElementById("error-subject"),
+          message: document.getElementById("error-message"),
+        };
+
+        Object.values(errors).forEach((el) => (el.textContent = ""));
+
+        let valid = true;
+
+        if (name.value.trim() === "") {
+          errors.name.textContent = "Full name is required.";
+          valid = false;
+        }
+
+        if (email.value.trim() === "") {
+          errors.email.textContent = "Email is required.";
+          valid = false;
+        } else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)) {
+          errors.email.textContent = "Please enter a valid email.";
+          valid = false;
+        }
+
+        if (subject.value.trim() === "") {
+          errors.subject.textContent = "Subject is required.";
+          valid = false;
+        }
+
+        if (message.value.trim() === "") {
+          errors.message.textContent = "Message cannot be empty.";
+          valid = false;
+        }
+
+        if (valid) {
+          form.reset();
+          success.hidden = false;
+        }
+      });
+    </script>
+  </body>
+</html>

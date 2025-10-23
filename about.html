@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Caleb</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+
+      :root {
+        --bg: #0f111a;
+        --text: #00ff9c;
+        --secondary: #08fdd8;
+        --border: #1a1c25;
+      }
+
+      body {
+        background-color: var(--bg);
+        font-family: "Fira Code", monospace;
+        color: var(--text);
+        margin: 0;
+        padding: 2rem;
+      }
+
+      /* 🔗 Navigation */
+      .site-nav {
+        background-color: #13151f;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2rem;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 255, 156, 0.15);
+      }
+
+      .site-nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+        flex-wrap: wrap;
+      }
+
+      .site-nav a {
+        color: var(--secondary);
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      .site-nav a:hover {
+        color: #fff;
+      }
+
+      .site-nav a.active {
+        color: var(--text);
+        border-bottom: 2px solid var(--text);
+      }
+
+      main[data-testid="test-about-page"] {
+        max-width: 800px;
+        margin: auto;
+        background: #13151f;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 0 20px rgba(0, 255, 156, 0.2);
+      }
+
+      h1,
+      h2 {
+        color: var(--secondary);
+      }
+
+      section {
+        margin-bottom: 2rem;
+      }
+
+      p {
+        line-height: 1.6;
+        color: #ccc;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About Me</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <main data-testid="test-about-page">
+      <h1>About Me</h1>
+
+      <section data-testid="test-about-bio">
+        <h2>Bio</h2>
+        <p>
+          I’m Caleb Adebayo, a passionate frontend developer who enjoys turning
+          ideas into functional, elegant web experiences. I love working with
+          modern JavaScript frameworks and pushing myself to build accessible
+          and performant applications.
+        </p>
+      </section>
+
+      <section data-testid="test-about-goals">
+        <h2>Goals in This Program</h2>
+        <p>
+          My main goal is to refine my technical depth in React, Next.js, and
+          scalable UI architecture, while also improving my problem-solving and
+          team collaboration skills.
+        </p>
+      </section>
+
+      <section data-testid="test-about-confidence">
+        <h2>Areas of Low Confidence</h2>
+        <p>
+          I’m still growing in advanced backend integrations and server
+          performance optimization. However, I view this as a challenge to keep
+          learning and improving.
+        </p>
+      </section>
+
+      <section data-testid="test-about-future-note">
+        <h2>Note to My Future Self</h2>
+        <p>
+          Keep learning. Stay humble. Remember that every great developer once
+          struggled with syntax errors and debugging loops. Growth is the
+          journey, not the destination.
+        </p>
+      </section>
+
+      <section data-testid="test-about-extra">
+        <h2>Extra Thoughts</h2>
+        <p>
+          Beyond coding, I value creativity, mentorship, and balance. I believe
+          that technology should serve people — not overwhelm them.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

@@ -22,9 +22,47 @@
         margin: 0;
         padding: 2rem;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
         min-height: 100vh;
+      }
+
+      /* 🔗 Navigation Bar Styles */
+      .site-nav {
+        background-color: #13151f;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2rem;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 255, 156, 0.15);
+        width: 100%;
+        max-width: 800px;
+      }
+
+      .site-nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+        flex-wrap: wrap;
+      }
+
+      .site-nav a {
+        color: var(--secondary);
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+
+      .site-nav a:hover {
+        color: #fff;
+      }
+
+      .site-nav a.active {
+        color: var(--text);
+        border-bottom: 2px solid var(--text);
       }
 
       article[data-testid="test-profile-card"] {
@@ -113,16 +151,6 @@
         color: var(--secondary);
       }
 
-      input[type="url"] {
-        background-color: #1d1f2b;
-        color: var(--text);
-        border: 1px solid var(--border);
-        padding: 0.5rem;
-        font-family: "Fira Code", monospace;
-        width: 100%;
-        max-width: 400px;
-      }
-
       section h3::before {
         content: "# ";
         color: var(--secondary);
@@ -153,7 +181,16 @@
       }
     </style>
   </head>
+
   <body>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
     <article data-testid="test-profile-card">
       <figure>
         <img
@@ -180,20 +217,13 @@
           <span data-testid="test-user-time" id="current-time"></span>
         </div>
 
-        <label for="avatar-url">Dev Stack</label>
+        <label>Dev Stack</label>
         <ul>
           <li>HTML, CSS, JavaScript, React, Tailwind, Next, Node, Express</li>
         </ul>
 
         <nav>
           <ul data-testid="test-user-social-links">
-            <!-- <li>
-              <a
-                href="https://twitter.com"
-                data-testid="test-user-social-twitter"
-                >Twitter</a
-              >
-            </li> -->
             <li>
               <a
                 target="_blank"
@@ -240,16 +270,6 @@
       };
       updateTime();
       setInterval(updateTime, 1000);
-
-      const avatarInput = document.getElementById("avatar-url");
-      const avatarImg = document.getElementById("user-avatar");
-
-      avatarInput.addEventListener("change", () => {
-        const url = avatarInput.value;
-        if (url && url.startsWith("http")) {
-          avatarImg.src = url;
-        }
-      });
     </script>
   </body>
 </html>
